@@ -33,7 +33,7 @@ header h1 {
     margin-right: 30px;
 }
 
-.add-book-button {
+.book-button {
     padding: 3px;
     width: 130px;
     border-radius: 10px;
@@ -44,7 +44,7 @@ header h1 {
     cursor: pointer;
 }
 
-.add-book-button:hover {
+.book-button:hover {
     background-color:#add5f0;
 }
 
@@ -59,14 +59,17 @@ header h1 {
     margin: 60px auto;
 }
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #94add6;
-    text-align: left;
-    padding: 8px;
-  }
+.book-container {
+width: 50%;
+margin:30px auto;
+}
+
+.book {
+    border: 1px solid #add5f0;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.right-position {
+    float: right;
+}

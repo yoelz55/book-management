@@ -25,28 +25,26 @@
       <input type="text" v-model="bookNameInput" />
       <label>Price: </label>
       <input type="number" v-model="priceInput"/>
-      <button class="add-book-button" v-on:click="addBook">Add book</button>
+      <button class="book-button" v-on:click="addBook">Add book</button>
   </div>
 
   <p v-if="isInputMiss" class="error-input">You need to fill all the fields before adding a book .</p>
     
-  <!--Container that contain a table of books
+  <!--Container that contain all the books
     that we add from the container above -->
 
-  <div class="book-collection-container">
-    <table>
-        <tr>
-          <th>Book Name</th>
-          <th>Price</th> 
-        </tr>
-        <template v-for="book in bookCollection">
-            <tr>
-                <td>{{book.name}}</td>
-                <td>{{book.price}}</td> 
-              </tr>
-        </template>
-    </table>
-  </div>
+    <div class="book-container">
+      <template v-for="(book, index) in bookCollection">
+        <div class="book">
+          <p>The book name is: {{book.name}} and the price is: {{book.price}} 
+              <button 
+                  @click="removeRow(index)"
+                  class="book-button right-position">Delete Book</button>
+          </p>
+        </div>
+    </template>
+    </div>
+
 
 </div>
 

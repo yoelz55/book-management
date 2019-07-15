@@ -22,6 +22,9 @@ new Vue({
         else {
           this.isInputMiss = true;
         }
+      },
+      removeRow: function(rowIndex) {
+        this.bookCollection.splice(rowIndex, 1);
       }
     }
   })
