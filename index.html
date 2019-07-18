@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Book Managment</title>
-    <script src="https://unpkg.com/vue"></script>
     <link type="text/css" href="style.css" rel="stylesheet">
+    <script src="vue.js"></script>
 </head>
 <body>
 
@@ -32,25 +32,28 @@
     
   <!--Container that contain all the books
     that we add from the container above -->
-    
+
+    <!--:class="[selectedBookId == book.id ? classStyle : 'book']"-->
+
       <div class="book-list-container">
-        <template v-for="(book, index) in bookCollection">
-          <div class="book" @click="bookSelected=book;">
+        <template v-for="(book, index) in visibleBooksArray">
+          <div @click="selectBook(book.id);" :class="getBookStyleById(book.id)" >
             <p>The book name is: {{book.name}} and the price is: {{book.price}} 
                 <button 
-                    @click.stop="removeBook(index)"
+                    @click.stop="removeBook(book.id)"
                     class="book-button right-position">Delete Book</button>
             </p>
           </div>
-      </template>
+        </template>
       </div>
 
     <!--Container that show the selected book from the list of books -->
 
       <div class="selected-book-container"> 
           <h2>Selected book</h2>
-          <p>Name: {{bookSelected.name}} </p>
-          <p>Price:{{bookSelected.price}}</p>
+          
+          <p>Name: {{selectedBook && selectedBook.name}} </p>
+          <p>Price: {{selectedBook && selectedBook.price}}</p>
       </div>
 
 </div>
