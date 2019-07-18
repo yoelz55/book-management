@@ -36,15 +36,13 @@
     <!--:class="[selectedBookId == book.id ? classStyle : 'book']"-->
 
       <div class="book-list-container">
-        <template v-for="(book, index) in visibleBooksArray">
-          <div @click="selectBook(book.id);" :class="getBookStyleById(book.id)" >
-            <p>The book name is: {{book.name}} and the price is: {{book.price}} 
-                <button 
-                    @click.stop="removeBook(book.id)"
-                    class="book-button right-position">Delete Book</button>
-            </p>
-          </div>
-        </template>
+        <book v-for="(book, index) in visibleBooksArray"
+          v-bind:book="book"
+          v-bind:key="book.id"
+          v-on:select-book="selectBook($event)"
+          v-on:remove-book="removeBook($event)"
+          :class=getBookStyleById(book.id)
+        ></book>
       </div>
 
     <!--Container that show the selected book from the list of books -->

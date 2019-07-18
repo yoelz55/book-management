@@ -1,5 +1,17 @@
 let counter = 0;
-Vue.component()
+Vue.component('book', {
+  props: ['book'],
+  template: `
+    <div @click="$emit('select-book', book.id);" >
+      <p>The book name is: {{book.name}} and the price is: {{book.price}} 
+          <button 
+              @click.stop="$emit('remove-book', book.id)"
+              class="book-button right-position">Delete Book</button>
+      </p>
+    </div>
+  `
+})
+
 var vm = new Vue({
   el: '#app',
   data: {

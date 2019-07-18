@@ -64,6 +64,7 @@ margin:30px auto;
     margin-bottom: 20px;
     padding: 10px;
     transition: 0.3s;
+    overflow: hidden;
 }
 
 .book:hover {
