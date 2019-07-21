@@ -22,6 +22,16 @@ header h1 {
     padding: 20px;
 }
 
+.filter-and-sort-container {
+    background-color: #c0ccf0;
+    margin: 80px 60px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+
 .add-book-container {
     width: 50%;
     margin: 50px auto;
@@ -82,10 +92,10 @@ margin:30px auto;
 .selected-book-container {
     position: absolute;
     height: 400px;
-    top: 23.5%;;
+    top: 40%;;
     right: 10%;
     width: 20%;
-    border: 2px solid #add5f0;
+    border: 2px solid aqua;
 }
 
 .selected-book-container h2 {

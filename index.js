@@ -1,4 +1,7 @@
-let counter = 0;
+
+
+///////// book component /////////
+
 Vue.component('book', {
   props: ['book'],
   template: `
@@ -12,6 +15,12 @@ Vue.component('book', {
   `
 })
 
+///////// end book component /////////
+
+
+
+///////// Vue instance  /////////
+
 var vm = new Vue({
   el: '#app',
   data: {
@@ -19,7 +28,10 @@ var vm = new Vue({
     priceInput: "",
     bookCollection: {},
     isInputMissing: false,
-    selectedBookId: null
+    selectedBookId: null,
+    filterInput: "",
+    picked: "",
+    counter: 0
   },
 
   computed: {
@@ -28,7 +40,17 @@ var vm = new Vue({
     },
 
     visibleBooksArray: function () {
-      return Object.values(this.bookCollection);
+      const bookCollection = Object.values(this.bookCollection); // Get an array from the data
+
+      if (!this.filterInput && !this.picked)
+        return bookCollection;
+      else if (this.filterInput && !this.picked)
+        return bookCollection.filter(book => book.name.includes(this.filterInput));
+      else if (!this.filterInput && this.picked)
+        return bookCollection.sort(this.propComparator(this.picked));
+      else
+        return bookCollection.filter(book => book.name.includes(this.filterInput)).sort(this.propComparator(this.picked))
+
     }
   },
 
@@ -37,9 +59,9 @@ var vm = new Vue({
       const book = {
         name: name,
         price: price,
-        id: counter
+        id: this.counter
       }
-      counter++;
+      this.counter++;
       vm.$set(vm.bookCollection, book.id, book)
     },
 
@@ -83,6 +105,12 @@ var vm = new Vue({
 
     getBookStyleById: function (bookId) {
       return this.selectedBookId == bookId ? "book selected-book" : "book";
+    },
+
+    propComparator: function (propName) {
+      if (propName == 'price')
+        return (a, b) => a.price - b.price;
+      return (a, b) => a[propName] == b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     }
   }
 })

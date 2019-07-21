@@ -10,11 +10,30 @@
 </head>
 <body>
 
-<div id="app">
+<div id="app">  
   
   <header>
     <h1>Book management application</h1>
   </header>
+
+   <!--Container that contain 2 features, one to filter the books by the input and 
+    the second is to sort the collection by name or by price -->
+
+  <div class="filter-and-sort-container">
+    <div class="filter-container">
+      <label>Filter by name: </label>
+      <input type="text" v-model="filterInput">
+    </div>
+    <div class="sort-container">
+      <label>Sort by: </label>
+      <input type="radio" name="sorted-by" value="name" v-model="picked">
+      <label>Name</label>
+      <input type="radio" name="sorted-by" value="price" v-model="picked">
+      <label>Price</label>
+    </div>
+  </div>
+
+
 
     <!--Container that contain 2 inputs and button,
      after clicking on the button the book will be 
@@ -37,19 +56,19 @@
 
       <div class="book-list-container">
         <book v-for="(book, index) in visibleBooksArray"
-          v-bind:book="book"
-          v-bind:key="book.id"
-          v-on:select-book="selectBook($event)"
-          v-on:remove-book="removeBook($event)"
-          :class=getBookStyleById(book.id)
-        ></book>
+          :book="book"
+          :key="book.id"
+          @select-book="selectBook($event)"
+          @remove-book="removeBook($event)"
+          :class=getBookStyleById(book.id) 
+        >
+        </book>
       </div>
 
     <!--Container that show the selected book from the list of books -->
 
       <div class="selected-book-container"> 
           <h2>Selected book</h2>
-          
           <p>Name: {{selectedBook && selectedBook.name}} </p>
           <p>Price: {{selectedBook && selectedBook.price}}</p>
       </div>
